@@ -15,7 +15,7 @@ const Blog = () => {
       id: 1,
       title: '10 Best Practices for Remote Employee Management',
       excerpt: 'Learn how to effectively manage your remote workforce with these proven strategies that boost productivity and engagement.',
-      date: 'May 15, 2023',
+      date: 'May 15, 2024',
       category: 'Management',
       readTime: '5 min read',
       featured: true
@@ -24,7 +24,7 @@ const Blog = () => {
       id: 2,
       title: 'How to Streamline Your Hiring Process',
       excerpt: 'Reduce time-to-hire by 40% and improve candidate experience with these actionable recruitment strategies.',
-      date: 'April 28, 2023',
+      date: 'April 28, 2024',
       category: 'Recruitment',
       readTime: '4 min read',
       featured: false
@@ -33,7 +33,7 @@ const Blog = () => {
       id: 3,
       title: 'The Future of HR Technology in 2023',
       excerpt: 'Discover the 5 emerging trends that will shape HR technology and how to prepare your organization.',
-      date: 'March 10, 2023',
+      date: 'March 10, 2024',
       category: 'Technology',
       readTime: '6 min read',
       featured: true
@@ -42,7 +42,7 @@ const Blog = () => {
       id: 4,
       title: 'Creating an Inclusive Workplace Culture',
       excerpt: 'Practical steps to build a more diverse and inclusive organization that drives innovation.',
-      date: 'February 22, 2023',
+      date: 'February 22, 2025',
       category: 'Culture',
       readTime: '7 min read',
       featured: false
@@ -51,7 +51,7 @@ const Blog = () => {
       id: 5,
       title: 'Employee Retention Strategies That Work',
       excerpt: 'Keep your top talent engaged and motivated with these 8 proven retention approaches.',
-      date: 'January 15, 2023',
+      date: 'January 15, 2025',
       category: 'Retention',
       readTime: '5 min read',
       featured: true
@@ -60,7 +60,7 @@ const Blog = () => {
       id: 6,
       title: 'Automating HR Processes: Where to Start',
       excerpt: 'A step-by-step guide to implementing HR automation that saves 15+ hours per week.',
-      date: 'December 5, 2022',
+      date: 'December 5, 2024',
       category: 'Automation',
       readTime: '8 min read',
       featured: false
