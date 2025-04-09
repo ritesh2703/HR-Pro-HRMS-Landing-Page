@@ -81,11 +81,12 @@ const Hero = () => {
                 <motion.a
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  href="#demo"
+                  href="https://drive.google.com/file/d/1eHJqpBaFmKKUMGR-zcMj0yixvF0F6p6k/view?usp=sharing"
                   className="px-6 py-4 bg-white text-gray-800 border border-gray-200 rounded-xl hover:bg-gray-50 hover:shadow-md transition-all duration-300 text-center font-medium flex items-center justify-center"
                 >
                   <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
                     <FiPlay className="text-blue-600" />
+                  
                   </div>
                   Watch Demo
                 </motion.a>

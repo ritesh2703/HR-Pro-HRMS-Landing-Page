@@ -75,7 +75,7 @@ const CTA = () => {
           demo_date: new Date(formData.date).toLocaleDateString(),
           demo_time: formData.time,
           demo_id: demoId,
-          demo_video_link: 'https://example.com/demo-video',
+          demo_video_link: 'https://drive.google.com/file/d/1eHJqpBaFmKKUMGR-zcMj0yixvF0F6p6k/view?usp=sharing',
           demo_meeting_link: 'https://zoom.us/j/123456789',
           demo_dashboard_link: 'https://hr-management-dashboard-inky.vercel.app/',
           demo_username: demoCredentials.username,
