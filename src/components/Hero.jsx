@@ -1,37 +1,43 @@
 import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
 import dashboardImage from '../assets/images/dashboard-screenshot.png';
-import { FiPlay, FiArrowRight, FiCheck } from 'react-icons/fi';
+import { FiPlay, FiArrowRight, FiCheck, FiX } from 'react-icons/fi';
 import { RiShieldCheckLine } from 'react-icons/ri';
 
+// Import your video file
+import demoVideo from '../assets/videos/hr.mp4';
+
 const Hero = () => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const videoRef = useRef(null);
+
   const stats = [
     { value: "95%", label: "User Satisfaction" },
     { value: "4.9/5", label: "Average Rating" },
     { value: "2.5x", label: "Faster Processing" }
   ];
 
-//   const hrFeatures = [
-//     {
-//       icon: "👥",
-//       title: "Employee Directory",
-//       description: "Centralized employee database with advanced search and filtering"
-//     },
-//     {
-//       icon: "🕒",
-//       title: "Attendance Tracking",
-//       description: "Automated time tracking with geofencing and shift management"
-//     },
-//     {
-//       icon: "💰",
-//       title: "Payroll System",
-//       description: "Complete payroll processing with tax compliance"
-//     },
-//     {
-//       icon: "📋",
-//       title: "Recruitment Hub",
-//       description: "End-to-end hiring process from job posting to onboarding"
-//     }
-//   ];
+  const openVideoModal = () => {
+    setIsVideoOpen(true);
+    document.body.style.overflow = 'hidden';
+    
+    // Play video when modal opens
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log("Autoplay prevented:", error);
+      });
+    }
+  };
+
+  const closeVideoModal = () => {
+    setIsVideoOpen(false);
+    document.body.style.overflow = 'auto';
+    
+    // Pause video when modal closes
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-blue-50/80 to-indigo-100/50">
@@ -78,34 +84,18 @@ const Hero = () => {
                   Get Started Free <FiArrowRight className="ml-2" />
                 </motion.a>
 
-                <motion.a
+                <motion.button
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  href="https://drive.google.com/file/d/1eHJqpBaFmKKUMGR-zcMj0yixvF0F6p6k/view?usp=sharing"
+                  onClick={openVideoModal}
                   className="px-6 py-4 bg-white text-gray-800 border border-gray-200 rounded-xl hover:bg-gray-50 hover:shadow-md transition-all duration-300 text-center font-medium flex items-center justify-center"
                 >
                   <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
                     <FiPlay className="text-blue-600" />
-                  
                   </div>
                   Watch Demo
-                </motion.a>
+                </motion.button>
               </div>
-
-              {/* Features grid */}
-              {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
-                {hrFeatures.map((feature, index) => (
-                  <motion.div 
-                    key={index}
-                    whileHover={{ y: -5 }}
-                    className="bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-gray-100 shadow-xs hover:shadow-sm transition-all"
-                  >
-                    <div className="text-3xl mb-3">{feature.icon}</div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                    <p className="text-gray-600 text-sm">{feature.description}</p>
-                  </motion.div>
-                ))}
-              </div> */}
 
               {/* Stats */}
               <div className="flex flex-wrap gap-6">
@@ -169,21 +159,50 @@ const Hero = () => {
                   </li>
                 </ul>
               </motion.div>
-
-              {/* User avatars */}
-              {/* <div className="absolute -bottom-10 right-10 flex -space-x-3">
-                {[1, 2, 3, 4].map((item) => (
-                  <motion.div
-                    key={item}
-                    whileHover={{ y: -5 }}
-                    className="w-12 h-12 rounded-full border-2 border-white bg-gray-200 overflow-hidden shadow-sm"
-                  ></motion.div>
-                ))}
-              </div> */}
             </motion.div>
           </div>
         </div>
       </div>
+
+      {/* Video Modal */}
+      {isVideoOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75 backdrop-blur-sm"
+          onClick={closeVideoModal}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={closeVideoModal}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black bg-opacity-50 text-white hover:bg-opacity-75 transition-all"
+              aria-label="Close video"
+            >
+              <FiX className="w-6 h-6" />
+            </button>
+            
+            <div className="w-full aspect-video">
+              <video
+                ref={videoRef}
+                controls
+                autoPlay
+                className="w-full h-full object-contain"
+                controlsList="nodownload"
+              >
+                <source src={demoVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </section>
   );
 };
