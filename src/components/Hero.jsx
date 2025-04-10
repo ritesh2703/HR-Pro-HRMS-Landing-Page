@@ -5,7 +5,7 @@ import { FiPlay, FiArrowRight, FiCheck, FiX } from 'react-icons/fi';
 import { RiShieldCheckLine } from 'react-icons/ri';
 
 // Import your video file
-import demoVideo from '../assets/videos/hrdemo.mp4';
+import demoVideo from '../assets/videos/hr.mp4';
 
 const Hero = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
