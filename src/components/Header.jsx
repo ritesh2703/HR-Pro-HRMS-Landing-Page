@@ -114,60 +114,53 @@ const Header = () => {
             className="hidden md:flex items-center space-x-3"
           >
             {user ? (
-              <div className="relative" ref={dropdownRef}>
-                <button 
-                  onClick={() => toggleDropdown('user')}
-                  className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300 rounded-lg hover:bg-gray-50"
-                >
-                  <span className="flex items-center">
-                    <FiUser className="mr-2" />
-                    {user.name}
-                  </span>
-                  <FiChevronDown className={`transition-transform ${openDropdown === 'user' ? 'rotate-180' : ''}`} />
-                </button>
-                
-                <AnimatePresence>
-                  {openDropdown === 'user' && (
-                    <motion.div
-                      initial="hidden"
-                      animate="visible"
-                      exit="exit"
-                      variants={dropdownVariants}
-                      transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-100"
-                    >
-                      <Link 
-                        to="/dashboard" 
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"
-                        onClick={() => setOpenDropdown(null)}
-                      >
-                        Dashboard
-                      </Link>
-                      <Link 
-                        to="/settings" 
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"
-                        onClick={() => setOpenDropdown(null)}
-                      >
-                        Settings
-                      </Link>
-                      <button
-                        onClick={handleLogout}
-                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"
-                      >
-                        Sign out
-                      </button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ) : (
               <>
-                <Link 
-                  to="/signin" 
-                  className="px-5 py-2 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300 rounded-lg hover:bg-gray-50"
-                >
-                  Sign In
-                </Link>
+                <div className="relative" ref={dropdownRef}>
+                  <button 
+                    onClick={() => toggleDropdown('user')}
+                    className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300 rounded-lg hover:bg-gray-50"
+                  >
+                    <span className="flex items-center">
+                      <FiUser className="mr-2" />
+                      {user.name}
+                    </span>
+                    <FiChevronDown className={`transition-transform ${openDropdown === 'user' ? 'rotate-180' : ''}`} />
+                  </button>
+                  
+                  <AnimatePresence>
+                    {openDropdown === 'user' && (
+                      <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={dropdownVariants}
+                        transition={{ duration: 0.2 }}
+                        className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-100"
+                      >
+                        <Link 
+                          to="/dashboard" 
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"
+                          onClick={() => setOpenDropdown(null)}
+                        >
+                          Dashboard
+                        </Link>
+                        <Link 
+                          to="/settings" 
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"
+                          onClick={() => setOpenDropdown(null)}
+                        >
+                          Settings
+                        </Link>
+                        <button
+                          onClick={handleLogout}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"
+                        >
+                          Sign out
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
                 <a 
                   href="https://hr-management-dashboard-inky.vercel.app"
                   className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
@@ -175,6 +168,13 @@ const Header = () => {
                   Get Started
                 </a>
               </>
+            ) : (
+              <Link 
+                to="/signin" 
+                className="px-5 py-2 text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300 rounded-lg hover:bg-gray-50"
+              >
+                Sign In
+              </Link>
             )}
           </motion.div>
 
@@ -247,6 +247,13 @@ const Header = () => {
                       >
                         Dashboard
                       </Link>
+                      <a 
+                        href="https://hr-management-dashboard-inky.vercel.app"
+                        className="block px-4 py-2.5 text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Get Started
+                      </a>
                       <button
                         onClick={() => {
                           handleLogout();
@@ -258,22 +265,13 @@ const Header = () => {
                       </button>
                     </>
                   ) : (
-                    <>
-                      <Link 
-                        to="/signin" 
-                        className="block px-4 py-2.5 text-center text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        Sign In
-                      </Link>
-                      <a 
-                        href="https://hr-management-dashboard-inky.vercel.app"
-                        className="block px-4 py-2.5 text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        Get Started
-                      </a>
-                    </>
+                    <Link 
+                      to="/signin" 
+                      className="block px-4 py-2.5 text-center text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Sign In
+                    </Link>
                   )}
                 </div>
               </div>
