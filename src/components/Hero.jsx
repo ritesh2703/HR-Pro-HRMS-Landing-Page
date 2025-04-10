@@ -4,11 +4,12 @@ import dashboardImage from '../assets/images/dashboard-screenshot.png';
 import { FiPlay, FiArrowRight, FiCheck, FiX } from 'react-icons/fi';
 import { RiShieldCheckLine } from 'react-icons/ri';
 
-// Import your video file
-import demoVideo from '../assets/images/hr.mp4';
+// Cloudinary video URL
+const demoVideo = 'https://res.cloudinary.com/dy3gmccf3/video/upload/v1744276425/eslb0h0wa9yk6tkoripx.mp4';
 
 const Hero = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const videoRef = useRef(null);
 
   const stats = [
@@ -21,10 +22,10 @@ const Hero = () => {
     setIsVideoOpen(true);
     document.body.style.overflow = 'hidden';
     
-    // Play video when modal opens
     if (videoRef.current) {
       videoRef.current.play().catch(error => {
         console.log("Autoplay prevented:", error);
+        setVideoError(true);
       });
     }
   };
@@ -33,7 +34,6 @@ const Hero = () => {
     setIsVideoOpen(false);
     document.body.style.overflow = 'auto';
     
-    // Pause video when modal closes
     if (videoRef.current) {
       videoRef.current.pause();
     }
@@ -189,16 +189,23 @@ const Hero = () => {
             </button>
             
             <div className="w-full aspect-video">
-              <video
-                ref={videoRef}
-                controls
-                autoPlay
-                className="w-full h-full object-contain"
-                controlsList="nodownload"
-              >
-                <source src={demoVideo} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              {videoError ? (
+                <div className="flex items-center justify-center h-full bg-gray-900 text-white">
+                  <p>Video failed to load. Please try again later.</p>
+                </div>
+              ) : (
+                <video
+                  ref={videoRef}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain"
+                  controlsList="nodownload"
+                  onError={() => setVideoError(true)}
+                >
+                  <source src={demoVideo} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
             </div>
           </motion.div>
         </motion.div>
